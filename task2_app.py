@@ -33,7 +33,7 @@ INVERTED = {"PT08.S3(NOx)"}  # lower reading = more NOx, so flip this axis
 # Temporary placeholder grouping until Task 1 groups arrive
 TEMP_RULE_ATTR, TEMP_RULE_THRESHOLD = "PT08.S1(CO)", 1200
 
-GROUP_COLOURS = {"G1": "#d62728", "G2": "#1f77b4", "G3": "#2ca02c",
+GROUP_COLOURS = {"G1": "#2563eb", "G2": "#f28e2b", "G3": "#9b3fc4",  # match Task 1 colours
                  "G4": "#9467bd", "G5": "#ff7f0e", "Unassigned": "#bbbbbb"}
 MISSING_BG = "#d9d9d9"  # grey background = missing data shows through
 
@@ -68,8 +68,13 @@ for a in ATTRS:
         norm[a] = 1 - norm[a]
 
 
-def axis_label(a):
-    return f"{a} (inv.)" if a in INVERTED else a
+SHORT = {"PT08.S1(CO)": "S1(CO)", "C6H6(GT)": "C6H6", "PT08.S3(NOx)": "S3(NOx)",
+         "PT08.S4(NO2)": "S4(NO2)", "PT08.S5(O3)": "S5(O3)", "T": "T", "RH": "RH", "AH": "AH"}
+
+
+def axis_label(a, short=False):
+    name = SHORT[a] if short else a
+    return f"{name} inv." if a in INVERTED else name
 
 
 # ---------------------------------------------------------------------------
@@ -99,10 +104,11 @@ def membership_heatmap(group, months):
     count = (d.pivot_table(index="Hour", columns="YearMonth", values="RecordID", aggfunc="count")
               .reindex(index=range(24), columns=months))
     fig = go.Figure(go.Heatmap(
-        z=share.values * 100, x=share.columns, y=share.index, customdata=count.values,
+        z=share.values * 100, x=share.columns, y=share.index,
+        text=count.fillna(0).astype(int).astype(str).values,  # grouped hours per cell
         colorscale="Reds", zmin=0, zmax=100, colorbar=dict(title=f"% in {group}"),
         hovertemplate="%{x}, %{y}:00<br>%{z:.0f}% in " + group +
-                      "<br>n = %{customdata} hours<extra></extra>"))
+                      "<br>n = %{text} grouped hours<extra></extra>"))
     fig.update_layout(title=f"View 2 - Membership of {group} by month and hour (click a cell)",
                       xaxis_title="Month", yaxis_title="Hour of day", xaxis_type="category",
                       plot_bgcolor=MISSING_BG, height=420, margin=dict(t=50, b=40))
@@ -128,10 +134,12 @@ def small_multiples(months, highlight=None, ncols=5):
     """View 3: one parallel-coordinates panel per month, lines coloured by group.
     Thin translucent lines = individual hours; thick line = group median.
     highlight = (YearMonth, Hour) clicked in View 2 -> those records drawn in black."""
+    ncols = min(ncols, len(months))  # fewer months -> wider panels
     rows = int(np.ceil(len(months) / ncols))
     fig = make_subplots(rows=rows, cols=ncols, subplot_titles=months,
-                        shared_yaxes=True, vertical_spacing=0.12, horizontal_spacing=0.02)
+                        shared_yaxes=True, vertical_spacing=0.16, horizontal_spacing=0.025)
     x = list(range(len(ATTRS)))
+    legend_done = set()
     for i, m in enumerate(months):
         r, c = i // ncols + 1, i % ncols + 1
         in_month = (df["YearMonth"] == m).values
@@ -148,9 +156,10 @@ def small_multiples(months, highlight=None, ncols=5):
                                        hoverinfo="skip", showlegend=False), r, c)
             fig.add_trace(go.Scatter(x=x, y=np.nanmedian(block, axis=0), mode="lines",
                                      line=dict(width=3, color=GROUP_COLOURS[g]), name=g,
-                                     legendgroup=g, showlegend=(i == 0),
+                                     legendgroup=g, showlegend=(g not in legend_done),
                                      hovertemplate=g + " median<br>%{text}: %{y:.2f}<extra></extra>",
                                      text=[axis_label(a) for a in ATTRS]), r, c)
+            legend_done.add(g)
         if highlight and highlight[0] == m:
             sel = in_month & (df["Hour"] == highlight[1]).values & (df["Group"] != "Unassigned").values
             block = norm[sel].values
@@ -159,8 +168,8 @@ def small_multiples(months, highlight=None, ncols=5):
                 ys = np.hstack([block, np.full((len(block), 1), np.nan)]).ravel()
                 fig.add_trace(go.Scatter(x=xs, y=ys, mode="lines", line=dict(width=1.2, color="black"),
                                          name=f"{m} {highlight[1]}:00", hoverinfo="skip"), r, c)
-    fig.update_xaxes(tickvals=x, ticktext=[axis_label(a) for a in ATTRS], tickangle=60,
-                     tickfont=dict(size=8), showgrid=True, gridcolor="#999")
+    fig.update_xaxes(tickvals=x, ticktext=[axis_label(a, short=True) for a in ATTRS], tickangle=-90,
+                     tickfont=dict(size=9), showgrid=True, gridcolor="#999")
     fig.update_yaxes(range=[0, 1], showticklabels=False)
     fig.update_layout(title="View 3 - Monthly parallel coordinates (global min-max scale; "
                             "thick = group median, black = clicked month-hour)",
