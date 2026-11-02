@@ -1,0 +1,748 @@
+{
+  "source_files": {
+    "Group Data.xlsx": {
+      "sha256": "a603e3f0bba440a571e4bd46d516daacb5980be548bfda5d068a3cc614f3e2dd"
+    },
+    "sensor response.xlsx": {
+      "sha256": "caa65108b0028a55ecf0037c1ab77966e0236eb05b9b145e3c07e62a7c588fa3"
+    },
+    "groups.csv": {
+      "sha256": "4cbab98af9903339f85a38ba21cbfbc55a5787f1dfd79ea96216d09298893d48"
+    }
+  },
+  "python": "3.13.9",
+  "dependencies": {
+    "dash": "4.5.0",
+    "plotly": "6.3.0",
+    "numpy": "2.3.5",
+    "pandas": "2.3.3",
+    "openpyxl": "3.1.5",
+    "scikit-learn": "1.8.0",
+    "pytest": "8.4.2"
+  },
+  "group_mapping": {
+    "status": "compared",
+    "A_selected_rows": 1205,
+    "A_rows_in_B": 1205,
+    "matching_labels": 1205,
+    "conflicting_labels": 0,
+    "A_rows_missing_from_B": 0,
+    "B_total_rows": 1205,
+    "B_rows_not_in_A": 0
+  },
+  "group_counts": {
+    "G2": 645,
+    "G1": 468,
+    "G3": 92
+  },
+  "source_rows": 9357,
+  "source_nan_counts": {
+    "PT08.S1(CO)": 366,
+    "C6H6(GT)": 366,
+    "PT08.S3(NOx)": 366,
+    "PT08.S4(NO2)": 366,
+    "PT08.S5(O3)": 366,
+    "T": 366,
+    "RH": 366,
+    "AH": 366
+  },
+  "eight_attributes": [
+    "PT08.S1(CO)",
+    "C6H6(GT)",
+    "PT08.S3(NOx)",
+    "PT08.S4(NO2)",
+    "PT08.S5(O3)",
+    "T",
+    "RH",
+    "AH"
+  ],
+  "colors": {
+    "G1": "#2563eb",
+    "G2": "#f28e2b",
+    "G3": "#9b3fc4"
+  },
+  "candidate_periods": [
+    {
+      "period": "Before \u00b7 Nov 1\u20134",
+      "records": 96,
+      "PT08.S4(NO2)": {
+        "n": 96,
+        "median": 1721.5,
+        "q25": 1560.0,
+        "q75": 1857.0
+      },
+      "T": {
+        "n": 96,
+        "median": 20.4,
+        "q25": 18.4,
+        "q75": 23.7
+      },
+      "AH": {
+        "n": 96,
+        "median": 1.498,
+        "q25": 1.4418000000000002,
+        "q75": 1.6548250000000002
+      }
+    },
+    {
+      "period": "Candidate \u00b7 Nov 5\u20137",
+      "records": 72,
+      "PT08.S4(NO2)": {
+        "n": 72,
+        "median": 1362.5,
+        "q25": 1189.0,
+        "q75": 1632.25
+      },
+      "T": {
+        "n": 72,
+        "median": 17.55,
+        "q25": 16.075000000000003,
+        "q75": 20.0
+      },
+      "AH": {
+        "n": 72,
+        "median": 1.28495,
+        "q25": 0.9024749999999999,
+        "q75": 1.3601999999999999
+      }
+    },
+    {
+      "period": "After \u00b7 Nov 8\u201311",
+      "records": 96,
+      "PT08.S4(NO2)": {
+        "n": 96,
+        "median": 1207.0,
+        "q25": 1050.5,
+        "q75": 1447.5
+      },
+      "T": {
+        "n": 96,
+        "median": 10.2,
+        "q25": 7.9,
+        "q75": 11.5
+      },
+      "AH": {
+        "n": 96,
+        "median": 0.7864,
+        "q25": 0.6439,
+        "q75": 0.872425
+      }
+    }
+  ],
+  "local_selected_counts": {
+    "G3": 2,
+    "G1": 2
+  },
+  "focus_selected_counts": {
+    "Nov 1 G2": 5,
+    "Nov 8 G1": 2
+  },
+  "reference_record": "AQ_005829",
+  "reference_time": "2004-11-08 13:00:00",
+  "reference_observed": {
+    "PT08.S1(CO)": 819.0,
+    "C6H6(GT)": 6.0,
+    "PT08.S3(NOx)": 947.0,
+    "PT08.S4(NO2)": 1027.0,
+    "PT08.S5(O3)": 631.0,
+    "T": 13.4,
+    "RH": 36.3,
+    "AH": 0.5556
+  },
+  "scenario_weather": {
+    "T": 21.4,
+    "RH": 60.9,
+    "AH": 1.5322
+  },
+  "scenario_weather_reference_record": "AQ_005762",
+  "scenario_weather_reference_time": "2004-11-05 18:00:00",
+  "complete_data_eight_attribute_periods": {
+    "Before \u00b7 Nov 1\u20134": {
+      "PT08.S1(CO)": {
+        "n": 96,
+        "median": 1264.0,
+        "q25": 1070.0,
+        "q75": 1383.25
+      },
+      "C6H6(GT)": {
+        "n": 96,
+        "median": 15.4,
+        "q25": 9.55,
+        "q75": 22.475
+      },
+      "PT08.S3(NOx)": {
+        "n": 96,
+        "median": 571.5,
+        "q25": 504.0,
+        "q75": 676.0
+      },
+      "PT08.S4(NO2)": {
+        "n": 96,
+        "median": 1721.5,
+        "q25": 1560.0,
+        "q75": 1857.0
+      },
+      "PT08.S5(O3)": {
+        "n": 96,
+        "median": 1330.5,
+        "q25": 1091.5,
+        "q75": 1588.5
+      },
+      "T": {
+        "n": 96,
+        "median": 20.4,
+        "q25": 18.4,
+        "q75": 23.7
+      },
+      "RH": {
+        "n": 96,
+        "median": 67.4,
+        "q25": 56.0,
+        "q75": 72.05
+      },
+      "AH": {
+        "n": 96,
+        "median": 1.498,
+        "q25": 1.4418000000000002,
+        "q75": 1.6548250000000002
+      }
+    },
+    "Candidate \u00b7 Nov 5\u20137": {
+      "PT08.S1(CO)": {
+        "n": 72,
+        "median": 1062.5,
+        "q25": 860.0,
+        "q75": 1313.75
+      },
+      "C6H6(GT)": {
+        "n": 72,
+        "median": 8.9,
+        "q25": 3.8,
+        "q75": 16.549999999999997
+      },
+      "PT08.S3(NOx)": {
+        "n": 72,
+        "median": 730.5,
+        "q25": 548.25,
+        "q75": 974.75
+      },
+      "PT08.S4(NO2)": {
+        "n": 72,
+        "median": 1362.5,
+        "q25": 1189.0,
+        "q75": 1632.25
+      },
+      "PT08.S5(O3)": {
+        "n": 72,
+        "median": 1004.0,
+        "q25": 724.5,
+        "q75": 1352.25
+      },
+      "T": {
+        "n": 72,
+        "median": 17.55,
+        "q25": 16.075000000000003,
+        "q75": 20.0
+      },
+      "RH": {
+        "n": 72,
+        "median": 59.0,
+        "q25": 50.85,
+        "q75": 67.6
+      },
+      "AH": {
+        "n": 72,
+        "median": 1.28495,
+        "q25": 0.9024749999999999,
+        "q75": 1.3601999999999999
+      }
+    },
+    "After \u00b7 Nov 8\u201311": {
+      "PT08.S1(CO)": {
+        "n": 96,
+        "median": 973.0,
+        "q25": 842.5,
+        "q75": 1151.5
+      },
+      "C6H6(GT)": {
+        "n": 96,
+        "median": 8.05,
+        "q25": 4.300000000000001,
+        "q75": 14.425
+      },
+      "PT08.S3(NOx)": {
+        "n": 96,
+        "median": 806.0,
+        "q25": 628.75,
+        "q75": 978.0
+      },
+      "PT08.S4(NO2)": {
+        "n": 96,
+        "median": 1207.0,
+        "q25": 1050.5,
+        "q75": 1447.5
+      },
+      "PT08.S5(O3)": {
+        "n": 96,
+        "median": 968.0,
+        "q25": 709.75,
+        "q75": 1193.75
+      },
+      "T": {
+        "n": 96,
+        "median": 10.2,
+        "q25": 7.9,
+        "q75": 11.5
+      },
+      "RH": {
+        "n": 96,
+        "median": 69.8,
+        "q25": 56.575,
+        "q75": 76.275
+      },
+      "AH": {
+        "n": 96,
+        "median": 0.7864,
+        "q25": 0.6439,
+        "q75": 0.872425
+      }
+    }
+  },
+  "what_if": {
+    "Linear Regression": {
+      "actual_weather_prediction": {
+        "PT08.S1(CO)": 890.7935782963037,
+        "C6H6(GT)": 7.383384687313064,
+        "PT08.S3(NOx)": 933.8639573819765,
+        "PT08.S4(NO2)": 1104.2048564822076,
+        "PT08.S5(O3)": 747.6350507181048
+      },
+      "nov5_weather_prediction": {
+        "PT08.S1(CO)": 979.1250226781442,
+        "C6H6(GT)": 8.131145213783867,
+        "PT08.S3(NOx)": 863.6751510852005,
+        "PT08.S4(NO2)": 1258.3058620075426,
+        "PT08.S5(O3)": 783.9458416376633
+      },
+      "prediction_delta": {
+        "PT08.S1(CO)": 88.33144438184047,
+        "C6H6(GT)": 0.7477605264708034,
+        "PT08.S3(NOx)": -70.18880629677608,
+        "PT08.S4(NO2)": 154.10100552533504,
+        "PT08.S5(O3)": 36.310790919558485
+      },
+      "actual_weather_prediction_abs_error": {
+        "PT08.S1(CO)": 71.79357829630374,
+        "C6H6(GT)": 1.3833846873130637,
+        "PT08.S3(NOx)": 13.136042618023453,
+        "PT08.S4(NO2)": 77.20485648220756,
+        "PT08.S5(O3)": 116.63505071810482
+      },
+      "held_out_test_mae": {
+        "PT08.S1(CO)": 95.74648405251926,
+        "C6H6(GT)": 3.1235537608063457,
+        "PT08.S3(NOx)": 71.05166838355784,
+        "PT08.S4(NO2)": 167.60000120994596,
+        "PT08.S5(O3)": 149.7515769061525
+      },
+      "observed_distances": {
+        "G1": 0.4822654318773482,
+        "G2": 1.045370244395595,
+        "G3": 2.373185658497493
+      },
+      "actual_weather_prediction_distances": {
+        "G1": 0.3628131752695289,
+        "G2": 0.8852570403861749,
+        "G3": 2.2047452638577663
+      },
+      "scenario_distances": {
+        "G1": 0.34411465446171363,
+        "G2": 0.6664592960646176,
+        "G3": 2.002867242381396
+      },
+      "g3_attribute_directions": {
+        "PT08.S1(CO)": {
+          "baseline_gap": 2.3527429309649532,
+          "scenario_gap": 2.052295841230802,
+          "change": "toward G3"
+        },
+        "C6H6(GT)": {
+          "baseline_gap": 2.480897428404889,
+          "scenario_gap": 2.4030057068975137,
+          "change": "toward G3"
+        },
+        "PT08.S3(NOx)": {
+          "baseline_gap": 1.6014894297976776,
+          "scenario_gap": 1.3761642089412536,
+          "change": "toward G3"
+        },
+        "PT08.S4(NO2)": {
+          "baseline_gap": 2.520794504514077,
+          "scenario_gap": 2.1760495257101957,
+          "change": "toward G3"
+        },
+        "PT08.S5(O3)": {
+          "baseline_gap": 1.922260054025637,
+          "scenario_gap": 1.8552659748382596,
+          "change": "toward G3"
+        }
+      },
+      "nearest_training_weather_triplet_iqr": 0.0,
+      "outside_marginal_training_range": []
+    },
+    "Random Forest Regression": {
+      "actual_weather_prediction": {
+        "PT08.S1(CO)": 861.4072177128427,
+        "C6H6(GT)": 5.70095183982684,
+        "PT08.S3(NOx)": 960.8087022005769,
+        "PT08.S4(NO2)": 1080.613353775854,
+        "PT08.S5(O3)": 707.0812490981242
+      },
+      "nov5_weather_prediction": {
+        "PT08.S1(CO)": 889.9671792328041,
+        "C6H6(GT)": 5.559834776334773,
+        "PT08.S3(NOx)": 954.8436333573829,
+        "PT08.S4(NO2)": 1160.107634680135,
+        "PT08.S5(O3)": 708.9163083213085
+      },
+      "prediction_delta": {
+        "PT08.S1(CO)": 28.559961519961462,
+        "C6H6(GT)": -0.1411170634920671,
+        "PT08.S3(NOx)": -5.96506884319399,
+        "PT08.S4(NO2)": 79.49428090428114,
+        "PT08.S5(O3)": 1.8350592231843166
+      },
+      "actual_weather_prediction_abs_error": {
+        "PT08.S1(CO)": 42.40721771284268,
+        "C6H6(GT)": 0.29904816017316005,
+        "PT08.S3(NOx)": 13.808702200576931,
+        "PT08.S4(NO2)": 53.613353775853966,
+        "PT08.S5(O3)": 76.0812490981242
+      },
+      "held_out_test_mae": {
+        "PT08.S1(CO)": 71.82592777489975,
+        "C6H6(GT)": 2.9997111616883707,
+        "PT08.S3(NOx)": 106.3373520056628,
+        "PT08.S4(NO2)": 182.3628950680587,
+        "PT08.S5(O3)": 141.14920317432012
+      },
+      "observed_distances": {
+        "G1": 0.4822654318773482,
+        "G2": 1.045370244395595,
+        "G3": 2.373185658497493
+      },
+      "actual_weather_prediction_distances": {
+        "G1": 0.424040240435958,
+        "G2": 0.9678581188970927,
+        "G3": 2.3035527815538424
+      },
+      "scenario_distances": {
+        "G1": 0.4211522127175044,
+        "G2": 0.8930339715376779,
+        "G3": 2.2441686085629415
+      },
+      "g3_attribute_directions": {
+        "PT08.S1(CO)": {
+          "baseline_gap": 2.4526965383916917,
+          "scenario_gap": 2.3555538121333193,
+          "change": "toward G3"
+        },
+        "C6H6(GT)": {
+          "baseline_gap": 2.6561508500180375,
+          "scenario_gap": 2.670850544131795,
+          "change": "away from G3"
+        },
+        "PT08.S3(NOx)": {
+          "baseline_gap": 1.687989413163971,
+          "scenario_gap": 1.668839914469929,
+          "change": "toward G3"
+        },
+        "PT08.S4(NO2)": {
+          "baseline_gap": 2.5735719154902594,
+          "scenario_gap": 2.395732360894552,
+          "change": "toward G3"
+        },
+        "PT08.S5(O3)": {
+          "baseline_gap": 1.997082566239623,
+          "scenario_gap": 1.9936968481156672,
+          "change": "toward G3"
+        }
+      },
+      "nearest_training_weather_triplet_iqr": 0.0,
+      "outside_marginal_training_range": []
+    }
+  },
+  "weather_only": {
+    "evaluation": {
+      "features": [
+        "T",
+        "RH",
+        "AH"
+      ],
+      "targets": [
+        "PT08.S1(CO)",
+        "C6H6(GT)",
+        "PT08.S3(NOx)",
+        "PT08.S4(NO2)",
+        "PT08.S5(O3)"
+      ],
+      "source_rows": 9357,
+      "eligible_rows": 8991,
+      "excluded_rows": 366,
+      "split_rule": "chronological 70% / 15% / 15%; train only fit; complete observed rows; no imputation",
+      "evaluation": {
+        "train": {
+          "n": 6293,
+          "start": "2004-03-10 18:00:00",
+          "end": "2004-12-04 02:00:00",
+          "models": {
+            "Weather Linear Regression": {
+              "PT08.S1(CO)": {
+                "mae": 174.84966547597293,
+                "rmse": 219.04129203490118,
+                "r2": 0.015026577915527306
+              },
+              "C6H6(GT)": {
+                "mae": 5.857410437974613,
+                "rmse": 7.6139359468184695,
+                "r2": 0.015031609421668035
+              },
+              "PT08.S3(NOx)": {
+                "mae": 180.14135151135986,
+                "rmse": 233.82212498858334,
+                "r2": 0.15403490327570935
+              },
+              "PT08.S4(NO2)": {
+                "mae": 206.1823692297795,
+                "rmse": 264.1874767573686,
+                "r2": 0.17244397918739252
+              },
+              "PT08.S5(O3)": {
+                "mae": 302.7544790502891,
+                "rmse": 375.60510312719504,
+                "r2": 0.017911032260135018
+              }
+            },
+            "Weather Random Forest": {
+              "PT08.S1(CO)": {
+                "mae": 110.34384840053808,
+                "rmse": 143.07295963948798,
+                "r2": 0.5797694233368078
+              },
+              "C6H6(GT)": {
+                "mae": 3.7211047443357255,
+                "rmse": 5.057454601652222,
+                "r2": 0.5654218952629675
+              },
+              "PT08.S3(NOx)": {
+                "mae": 114.10004043772351,
+                "rmse": 151.46153222047053,
+                "r2": 0.645034675045639
+              },
+              "PT08.S4(NO2)": {
+                "mae": 132.27525342288553,
+                "rmse": 175.90644328011498,
+                "r2": 0.6331095192326974
+              },
+              "PT08.S5(O3)": {
+                "mae": 187.92968024553738,
+                "rmse": 241.06260325298047,
+                "r2": 0.5954729675080676
+              }
+            }
+          }
+        },
+        "validation": {
+          "n": 1349,
+          "start": "2004-12-04 03:00:00",
+          "end": "2005-02-04 04:00:00",
+          "models": {
+            "Weather Linear Regression": {
+              "PT08.S1(CO)": {
+                "mae": 170.22525228670247,
+                "rmse": 210.9883363889381,
+                "r2": 0.0721654086159832
+              },
+              "C6H6(GT)": {
+                "mae": 5.425595105465831,
+                "rmse": 6.883035371565245,
+                "r2": 0.03966023176564015
+              },
+              "PT08.S3(NOx)": {
+                "mae": 285.15241745792537,
+                "rmse": 340.55455912573746,
+                "r2": -0.4240578430575106
+              },
+              "PT08.S4(NO2)": {
+                "mae": 269.420859309791,
+                "rmse": 306.1346825870327,
+                "r2": -0.38963754964504416
+              },
+              "PT08.S5(O3)": {
+                "mae": 364.2518286938248,
+                "rmse": 462.45944398798446,
+                "r2": -0.042967789008797164
+              }
+            },
+            "Weather Random Forest": {
+              "PT08.S1(CO)": {
+                "mae": 177.6339211736068,
+                "rmse": 229.99675744980942,
+                "r2": -0.10254694627949767
+              },
+              "C6H6(GT)": {
+                "mae": 5.9726302703955545,
+                "rmse": 7.929517578422014,
+                "r2": -0.2745545957817599
+              },
+              "PT08.S3(NOx)": {
+                "mae": 285.49847800798943,
+                "rmse": 360.32359503643056,
+                "r2": -0.5941883697450578
+              },
+              "PT08.S4(NO2)": {
+                "mae": 190.67041054156417,
+                "rmse": 240.5418183093436,
+                "r2": 0.1420585490666031
+              },
+              "PT08.S5(O3)": {
+                "mae": 411.2782624473196,
+                "rmse": 516.3393240641511,
+                "r2": -0.30015159851912165
+              }
+            }
+          }
+        },
+        "test": {
+          "n": 1349,
+          "start": "2005-02-04 05:00:00",
+          "end": "2005-04-04 14:00:00",
+          "models": {
+            "Weather Linear Regression": {
+              "PT08.S1(CO)": {
+                "mae": 147.26136777755556,
+                "rmse": 191.40816056770038,
+                "r2": 0.05580401844503058
+              },
+              "C6H6(GT)": {
+                "mae": 4.9413138405373855,
+                "rmse": 6.069388271853164,
+                "r2": 0.000819876385781626
+              },
+              "PT08.S3(NOx)": {
+                "mae": 283.21432935955704,
+                "rmse": 324.7757290816034,
+                "r2": -1.1521693299396927
+              },
+              "PT08.S4(NO2)": {
+                "mae": 293.95163293074063,
+                "rmse": 327.9751173218591,
+                "r2": -0.5319680105421527
+              },
+              "PT08.S5(O3)": {
+                "mae": 332.3078953862618,
+                "rmse": 415.1808401944401,
+                "r2": 0.02073410479061477
+              }
+            },
+            "Weather Random Forest": {
+              "PT08.S1(CO)": {
+                "mae": 161.31271332650408,
+                "rmse": 213.87973257128044,
+                "r2": -0.1789096242170507
+              },
+              "C6H6(GT)": {
+                "mae": 5.522012352404594,
+                "rmse": 7.236566703152761,
+                "r2": -0.42042753676116806
+              },
+              "PT08.S3(NOx)": {
+                "mae": 269.2342529215917,
+                "rmse": 327.1068422427863,
+                "r2": -1.1831750649908868
+              },
+              "PT08.S4(NO2)": {
+                "mae": 223.31378588186197,
+                "rmse": 271.92259549149674,
+                "r2": -0.05307304970314308
+              },
+              "PT08.S5(O3)": {
+                "mae": 371.5190151258863,
+                "rmse": 472.08120452097603,
+                "r2": -0.2660750261720639
+              }
+            }
+          }
+        }
+      }
+    },
+    "observed_pool_window": "2004-10-15 00:00 inclusive to 2004-11-02 00:00 exclusive",
+    "observed_weather_triplets": 432,
+    "selected_G2_observed_ranges": {
+      "PT08.S1(CO)": {
+        "min": 922.0,
+        "max": 1560.0,
+        "n": 645
+      },
+      "C6H6(GT)": {
+        "min": 6.3,
+        "max": 15.0,
+        "n": 645
+      },
+      "PT08.S3(NOx)": {
+        "min": 557.0,
+        "max": 1008.0,
+        "n": 645
+      },
+      "PT08.S4(NO2)": {
+        "min": 1700.0,
+        "max": 2021.0,
+        "n": 645
+      },
+      "PT08.S5(O3)": {
+        "min": 709.0,
+        "max": 1727.0,
+        "n": 645
+      },
+      "T": {
+        "min": 8.0,
+        "max": 41.1,
+        "n": 645
+      },
+      "RH": {
+        "min": 15.3,
+        "max": 81.1,
+        "n": 645
+      },
+      "AH": {
+        "min": 0.632,
+        "max": 2.1719,
+        "n": 645
+      }
+    },
+    "scenario_counts": {
+      "Weather Linear Regression": {
+        "n": 432,
+        "within_selected_G2_S4_T_AH_ranges": 133,
+        "criterion": "S4 prediction and observed T/AH each within A-selected G2 min/max; descriptive only"
+      },
+      "Weather Random Forest": {
+        "n": 432,
+        "within_selected_G2_S4_T_AH_ranges": 175,
+        "criterion": "S4 prediction and observed T/AH each within A-selected G2 min/max; descriptive only"
+      }
+    },
+    "nov8_reference_is_training": true,
+    "default_weather_record": "AQ_005636"
+  },
+  "evidence_verdict": "Insufficient evidence for preserved or changed group membership; descriptive profile resemblance only, no causal claim.",
+  "limitations": [
+    "No validated group-membership rule, decision boundary, or independent labelled transition outcomes.",
+    "No calibrated scenario uncertainty interval or equivalence margin; nearest median is not a membership test.",
+    "Selected reference hour is in training, not a held-out prospective forecast.",
+    "Weather is contemporaneous; an operational one-hour-ahead forecast would need future weather inputs.",
+    "Fixed lagged sensors can dominate apparent persistence; T/RH/AH can be mutually inconsistent.",
+    "Scaling uses all-source IQR for descriptive displays; not a training-only validation selection scale.",
+    "Only two G3 and two G1 representative rows occur in the candidate window; selected rows are not population samples."
+  ]
+}
