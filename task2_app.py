@@ -89,7 +89,7 @@ def calendar_heatmap(attr, months):
         z=grid.values, x=grid.columns, y=grid.index, colorscale="Viridis",
         colorbar=dict(title=attr),
         hovertemplate="%{x}<br>Hour %{y}:00<br>" + attr + " = %{z}<extra></extra>"))
-    fig.update_layout(title=f"View 1 - Calendar heatmap of {attr} (grey = missing, not imputed)",
+    fig.update_layout(title=f"View 1 - Calendar heatmap of {attr} (grey = missing measurement; never imputed)",
                       xaxis_title="Date", yaxis_title="Hour of day",
                       plot_bgcolor=MISSING_BG, height=360, margin=dict(t=50, b=40))
     return fig
@@ -109,7 +109,7 @@ def membership_heatmap(group, months):
         colorscale="Reds", zmin=0, zmax=100, colorbar=dict(title=f"% in {group}"),
         hovertemplate="%{x}, %{y}:00<br>%{z:.0f}% in " + group +
                       "<br>n = %{text} grouped hours<extra></extra>"))
-    fig.update_layout(title=f"View 2 - Membership of {group} by month and hour (click a cell)",
+    fig.update_layout(title=f"View 2 - Membership of {group} by month and hour (click a cell; grey = no grouped hours)",
                       xaxis_title="Month", yaxis_title="Hour of day", xaxis_type="category",
                       plot_bgcolor=MISSING_BG, height=420, margin=dict(t=50, b=40))
     return fig
@@ -177,6 +177,29 @@ def small_multiples(months, highlight=None, ncols=5):
     return fig
 
 
+# Revised evaluation indicators: these are display-only counts; no groups are reassigned.
+SMALL_GROUP_THRESHOLD = 10
+
+def evaluation_counts(months, group, highlight=None):
+    d = df[df["YearMonth"].isin(months)]
+    grouped = d[d["Group"] != "Unassigned"]
+    month_count = d.groupby(["YearMonth", "Group"]).size().unstack(fill_value=0)
+    warnings = []
+    for month in months:
+        count = int(month_count.loc[month, group]) if group in month_count.columns and month in month_count.index else 0
+        if 0 < count < SMALL_GROUP_THRESHOLD:
+            warnings.append(f"{month}: {group} n={count}")
+    selected = "Click a month-hour heatmap cell to inspect its hourly records."
+    if highlight and highlight[0] in months:
+        sub = grouped[(grouped["YearMonth"] == highlight[0]) & (grouped["Hour"] == highlight[1])]
+        selected_n = int((sub["Group"] == group).sum())
+        selected = (f"Selected {highlight[0]} at {highlight[1]:02d}:00: "
+                    f"{selected_n} {group} hours among {len(sub)} grouped hours. "
+                    f"{'SMALL SAMPLE — interpret cautiously.' if 0 < selected_n < SMALL_GROUP_THRESHOLD else ''}")
+    return (f"Selected group: {group}; {int((grouped.Group == group).sum())} records in displayed months; "
+            f"{len(grouped)} grouped records and {len(d)-len(grouped)} unassigned records. "
+            + selected + (" Small month-group samples (n<10): " + "; ".join(warnings) + "." if warnings else ""))
+
 # ---------------------------------------------------------------------------
 # 4. Layout and interaction
 # ---------------------------------------------------------------------------
@@ -195,11 +218,19 @@ app.layout = html.Div(style={"fontFamily": "Arial", "margin": "16px"}, children=
     html.Label("Month range (filters all views)"),
     dcc.RangeSlider(0, len(MONTHS) - 1, 1, value=[0, len(MONTHS) - 1], id="months",
                     marks={i: m for i, m in enumerate(MONTHS)}),
+    html.Div([
+        html.Span("■", style={"color": MISSING_BG, "marginRight": "6px"}),
+        "View 1 grey = missing measurement (NaN; never imputed).  ",
+        html.Span("■", style={"color": MISSING_BG, "marginLeft": "14px", "marginRight": "6px"}),
+        "View 2 grey = no grouped hours in that month-hour cell (not necessarily missing data)."
+    ], style={"padding": "12px", "background": "#f3f4f6", "borderRadius": "6px", "marginTop": "14px"}),
     dcc.Graph(id="calendar"),
     html.Div(style={"display": "flex", "flexWrap": "wrap"}, children=[
         dcc.Graph(id="membership", style={"flex": "1 1 600px"}),
         dcc.Graph(id="bars", style={"flex": "1 1 500px"}),
     ]),
+    html.Div(id="evaluation-counts", style={"padding": "12px", "background": "#fff7ed",
+                                             "borderLeft": "4px solid #ea580c", "marginTop": "10px"}),
     dcc.Graph(id="multiples"),
 ])
 
@@ -220,6 +251,17 @@ def update_multiples(rng, click):
         p = click["points"][0]
         highlight = (str(p["x"]), int(p["y"]))
     return small_multiples(months, highlight)
+
+
+@app.callback(Output("evaluation-counts", "children"),
+              Input("months", "value"), Input("group", "value"), Input("membership", "clickData"))
+def update_evaluation_counts(rng, group, click):
+    months = MONTHS[rng[0]:rng[1] + 1]
+    highlight = None
+    if click and click.get("points"):
+        point = click["points"][0]
+        highlight = (str(point["x"]), int(point["y"]))
+    return evaluation_counts(months, group, highlight)
 
 
 if __name__ == "__main__":
